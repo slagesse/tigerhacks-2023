@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+
+<!--Created for TigerHacks 2023 by Shane LaGesse <3-->
+
+<head>
+    <style>
+        /* Palette definition */
+        :root {
+            --red: #D7263D;
+        }
+        /* Clear inherent properties */
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+        
+        html {
+            height: 100vh;
+            width: 100%;
+        }
+
+        body {
+            /* Make body full height but account for nav */
+            height: calc(100% - 80px);
+            width: 100%;
+        }
+
+        nav {
+            width: 100%;
+        }
+
+        /*====GENERAL CLASSES===*/
+        .c-vert {
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .c-hor {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .j-right {
+            width: 100%;
+            display: flex;
+            justify-content: right;
+        }
+
+        .block {
+            display: inline;
+        }
+        /*======================*/
+
+        /*====TEXT STUFF==============================================================================*/
+
+        .heading {
+            color: var(--red);
+            font-size: 30px;
+            font-family: 'Helvetica Light', 'Helvetica', Arial, sans-serif;
+            font-weight: bold;
+        }
+
+        /*============================================================================================*/
+
+
+        /*====NAV STUFF===============================================================================*/
+
+        #header-nav {
+            width: 100%;
+            height: 80px;
+            background-color: var(--red);
+        }
+
+        #header-nav-content {
+            margin-left: 20px;
+            color: white;
+            margin-right: 60px;
+            width: auto;
+        }
+
+        #masthead {
+            margin-left: 40px;
+            color: white;
+            font-size: 40px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-weight: bold;
+        }
+
+        .nav-link {
+            /*==============================ANIMATION STUFF============================================*/
+            background: linear-gradient(0deg, white, white) no-repeat right bottom / 0 var(--bg-h);
+            transition: background-size 350ms;
+            padding-bottom: 2px;
+            --bg-h: 2px;
+            /*=========================================================================================*/
+            margin-left: 40px;
+            color: white;
+            font-size: 20px;
+            font-family: 'Helvetica Light', 'Helvetica', Arial, sans-serif;
+            font-weight: 100;
+            width: max-content;
+        }
+
+        .nav-link:where(:hover) {
+            background-size: 100% var(--bg-h);
+            background-position-x: left;
+        }
+
+        /*====END NAV STUFF==========================================================================*/
+
+        /*====BODY STUFF===============================================================================*/
+        
+        .body {
+            width: 100%;
+            height: 100%;
+        }
+
+        .login-window {
+            height: 500px;
+            width: 400px;
+        }
+
+        .selected {
+            font-weight: bold;
+            margin-right: 0px;
+            margin-left: 38px;
+        }
+
+        /*====END BODY STUFF===============================================================================*/
+       
+       
+        /*====FORM STUFF===============================================================================*/
+        .switch-field {
+            display: flex;
+            margin-bottom: 36px;
+            overflow: hidden;
+        }
+
+        .switch-field input {
+            position: absolute !important;
+            clip: rect(0, 0, 0, 0);
+            height: 1px;
+            width: 1px;
+            border: 0;
+            overflow: hidden;
+        }
+
+        .switch-field label {
+            width: 100%;
+            background-color: white;
+            color: rgba(0, 0, 0, 0.6);
+            font-size: 30px;
+            line-height: 1;
+            text-align: center;
+            padding: 16px 32px;
+            border: 3px solid var(--red);
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease-in-out;
+            font-family: 'Helvetica Light', 'Helvetica', Arial, sans-serif;
+            font-weight: bold;
+        }
+
+        .switch-field label:hover {
+            cursor: pointer;
+        }
+
+        .switch-field input:checked + label {
+            background-color: var(--red);
+            box-shadow: none;
+            color: white;
+        }
+
+        .switch-field label:first-of-type {
+            border-radius: 20px 0 0 20px;
+        }
+
+        .switch-field label:last-of-type {
+            border-radius: 0 20px 20px 0;
+        }    
+
+        .text-entry {
+            box-sizing: border-box;
+            width: 100%;
+            border: 2px solid gray;
+            outline: none;
+            font-size: 30px;
+            font-weight: lighter;
+            border-radius: 10px;
+            padding: 10px 10px 15px 10px;
+            margin-bottom: 20px;
+        }
+
+        .submit-button {
+            box-sizing: border-box;
+            background-color: var(--red);
+            font-size: 30px;
+            font-weight: bold;
+            color: white;
+            border: 2px solid var(--red);
+            border-radius: 10px;
+            padding: 10px 15px 15px 10px;
+            width: 100%;
+            transition: color 350ms, background-color 350ms;
+        }
+
+        .submit-button:hover {
+            background-color: white;
+            color: var(--red);
+            cursor: pointer;
+        }
+        /*=======================================================================================================*/
+
+        
+    </style>
+</head>
+
+<body>
+    <!--HEADER-->
+    <div id="header-nav">
+        <div id="header-nav-content" class="c-vert">
+            <span id="masthead">RedPen</span>
+            <nav>
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="index.html" class="nav-link">Stats</a>
+                <a href="index.html" class="nav-link">Help</a>
+            </nav>
+            <div class="j-right">
+                <img style="filter: invert(1); margin-right: 10px;"width="24" height="24" src="https://img.icons8.com/material-rounded/24/user-male-circle.png" alt="user-male-circle"/>
+                <a href="login.html" class="nav-link selected" style="margin-left: 0px;">Login / Signup</a>
+            </div>
+        </div>
+    </div>
+    <!--END HEADER-->
+    
+    <!--BODY-->
+    <div class="body">
+        <div class="c-vert c-hor">
+            <div class="login-window c-vert c-hor">
+                <div class="block">
+                    <form class="form" action="/login" method="post">
+                        <div class="switch-field">
+                            <input type="radio" id="consumer" name="user-type" value="Consumer" checked/>
+                            <label for="consumer">Consumer</label>
+                            <input type="radio" id="publisher" name="user-type" value="Publisher" />
+                            <label for="publisher">Publisher</label>
+                        </div>
+                        <input class="text-entry" type="text" name="user" placeholder="Email">
+                        <input class="text-entry" type="password" name="pass" placeholder="Password">
+                        <input class="submit-button" type="submit" value="Login">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--END BODY-->
+</body>

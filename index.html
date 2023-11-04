@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+<!--Created for TigerHacks 2023 by Shane LaGesse <3-->
+
+<head>
+    <style>
+        /* Palette definition */
+        :root {
+            --red: #D7263D;
+        }
+        /* Clear inherent properties */
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        nav {
+            width: 100%;
+        }
+
+        /*====GENERAL CLASSES===*/
+        .c-vert {
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .c-hor {
+            width: 100%;
+            display: flex;
+            align-content: center;
+        }
+
+        .j-right {
+            width: 100%;
+            display: flex;
+            justify-content: right;
+        }
+        /*======================*/
+
+        /*====NAV STUFF===============================================================================*/
+
+        #header-nav {
+            width: 100%;
+            height: 80px;
+            background-color: var(--red);
+        }
+
+        #header-nav-content {
+            margin-left: 20px;
+            color: white;
+            margin-right: 60px;
+            width: auto;
+        }
+
+        #masthead {
+            margin-left: 40px;
+            color: white;
+            font-size: 40px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-weight: bold;
+        }
+
+        .nav-link {
+            /*==============================ANIMATION STUFF============================================*/
+            background: linear-gradient(0deg, white, white) no-repeat right bottom / 0 var(--bg-h);
+            transition: background-size 350ms;
+            padding-bottom: 2px;
+            --bg-h: 2px;
+            /*=========================================================================================*/
+            margin-left: 40px;
+            color: white;
+            font-size: 20px;
+            font-family: 'Helvetica Light', 'Helvetica', Arial, sans-serif;
+            font-weight: 100;
+            width: max-content;
+        }
+
+        .nav-link:where(:hover) {
+            background-size: 100% var(--bg-h);
+            background-position-x: left;
+        }
+
+        .selected {
+            font-weight: bold;
+            margin-right: 0px;
+            margin-left: 38px;
+        }
+
+        /*====END NAV STUFF==========================================================================*/
+
+    </style>
+</head>
+
+<body>
+    <!--HEADER-->
+    <div id="header-nav">
+        <div id="header-nav-content" class="c-vert">
+            <span id="masthead">RedPen</span>
+            <nav>
+                <a href="index.html" class="nav-link selected">Home</a>
+                <a href="index.html" class="nav-link">Stats</a>
+                <a href="index.html" class="nav-link">Help</a>
+            </nav>
+            <div class="j-right">
+                <img style="filter: invert(1); margin-right: 10px;"width="24" height="24" src="https://img.icons8.com/material-rounded/24/user-male-circle.png" alt="user-male-circle"/>
+                <a href="login.html" class="nav-link" style="margin-left: 0px;">Login / Signup</a>
+            </div>
+        </div>
+    </div>
+    <!--END HEADER-->
+    
+    <!--BODY-->
+    <div class="body">
+    </div>
+    <!--END BODY-->
+</body>
