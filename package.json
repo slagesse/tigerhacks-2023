@@ -1,0 +1,20 @@
+{
+  "name": "tigerhacks-2023",
+  "version": "1.0.0",
+  "description": "Tigerhacks 2023 <3",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/slagesse/tigerhacks-2023.git"
+  },
+  "author": "Shane LaGesse",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/slagesse/tigerhacks-2023/issues"
+  },
+  "homepage": "https://github.com/slagesse/tigerhacks-2023#readme"
+}
