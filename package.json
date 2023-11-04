@@ -19,6 +19,7 @@
   "homepage": "https://github.com/slagesse/tigerhacks-2023#readme",
   "dependencies": {
     "express": "^4.18.2",
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "net": "^1.0.2"
   }
 }
