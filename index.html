@@ -3,6 +3,7 @@
 <!--Created for TigerHacks 2023 by Shane LaGesse <3-->
 
 <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <style>
         /* Palette definition */
         :root {
@@ -108,7 +109,7 @@
             </nav>
             <div class="j-right">
                 <img style="filter: invert(1); margin-right: 10px;"width="24" height="24" src="https://img.icons8.com/material-rounded/24/user-male-circle.png" alt="user-male-circle"/>
-                <a href="login.html" class="nav-link" style="margin-left: 0px;">Login / Signup</a>
+                <a href="login.html" id="user-info" class="nav-link" style="margin-left: 0px;">Login / Signup</a>
             </div>
         </div>
     </div>
@@ -119,3 +120,13 @@
     </div>
     <!--END BODY-->
 </body>
+
+<script>
+    $( document ).ready(function() {
+        if (sessionStorage.getItem("username") != null)
+        {
+            $("#user-info").text(sessionStorage.getItem("username"));
+            $("#user-info").attr("href", "/user-profile")
+        }
+    });
+</script>

@@ -3,6 +3,8 @@
 <!--Created for TigerHacks 2023 by Shane LaGesse <3-->
 
 <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
     <style>
         /* Palette definition */
         :root {
@@ -64,6 +66,22 @@
             font-size: 30px;
             font-family: 'Helvetica Light', 'Helvetica', Arial, sans-serif;
             font-weight: bold;
+        }
+
+        .big {
+            font-size: 50px;
+        }
+
+        .error-message {
+            color: var(--red);
+            font-size: 20px;
+            font-family: 'Helvetica Light', 'Helvetica', Arial, sans-serif;
+            font-weight: lighter;
+            width: max-content;
+            margin-right: auto;
+            margin-left: auto;
+            margin-bottom: 15px;
+            display: none;
         }
 
         /*============================================================================================*/
@@ -214,6 +232,31 @@
             color: var(--red);
             cursor: pointer;
         }
+
+        .login {
+            display: inline;
+        }
+
+        .signup {
+            display: none;
+        }
+
+        .link-button {
+            background-color: white;
+            font-size: 20px;
+            font-family: 'Helvetica Light', 'Helvetica', Arial, sans-serif;
+            font-weight: lighter;
+            border: none;
+            width: max-content;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 20px;
+        }
+
+        .link-button:hover {
+            cursor: pointer;
+        }
         /*=======================================================================================================*/
 
         
@@ -242,21 +285,89 @@
     <div class="body">
         <div class="c-vert c-hor">
             <div class="login-window c-vert c-hor">
-                <div class="block">
-                    <form class="form" action="/login" method="post">
+                <div class="login block" id="login">
+                    <form class="form">
+                        <span class="heading big c-hor" style="margin-bottom: 20px;">Login</span>
                         <div class="switch-field">
-                            <input type="radio" id="consumer" name="user-type" value="Consumer" checked/>
+                            <input type="radio" id="consumer" name="user-type-LI" value="Consumer" checked/>
                             <label for="consumer">Consumer</label>
-                            <input type="radio" id="publisher" name="user-type" value="Publisher" />
+                            <input type="radio" id="publisher" name="user-type-LI" value="Publisher" />
                             <label for="publisher">Publisher</label>
                         </div>
-                        <input class="text-entry" type="text" name="user" placeholder="Email">
-                        <input class="text-entry" type="password" name="pass" placeholder="Password">
-                        <input class="submit-button" type="submit" value="Login">
+                        <input id="username" class="text-entry" type="text" name="user" placeholder="Email">
+                        <input id="password" class="text-entry" type="password" name="pass" placeholder="Password">
                     </form>
+                    <p class="error-message LI-error">Incorrect username or password</p>
+                    <button id="login-button" class="submit-button">Submit</button>
+                    <button id="switch-tab" onclick="goSignUp()" class="link-button">Don't have an account? <span style="color: var(--red)">Sign up</span></button>
+                </div>
+                <div class="signup block" id="signup">
+                    <form class="form">
+                        <span class="heading big c-hor" style="margin-bottom: 20px;">Sign Up</span>
+                        <div class="switch-field">
+                            <input type="radio" id="consumer" name="user-type-SU" value="Consumer" checked/>
+                            <label for="consumer">Consumer</label>
+                            <input type="radio" id="publisher" name="user-type-SU" value="Publisher" />
+                            <label for="publisher">Publisher</label>
+                        </div>
+                        <input id="username" class="text-entry" type="text" name="user" placeholder="Email">
+                        <input id="password" class="text-entry" type="password" name="pass" placeholder="Password">
+                    </form>
+                    <p class="error-message SU-error">Username taken</p>
+                    <button id="signup-button" class="submit-button">Submit</button>
+                    <button id="switch-tab" onclick="goLogIn()" class="link-button">Already have an account? <span style="color: var(--red)">Log in</span></button>
                 </div>
             </div>
         </div>
     </div>
     <!--END BODY-->
 </body>
+
+<script>
+    $(function(){
+        $("#login-button").on("click", async function(){
+            console.log($('input[name="user-type-LI"]:checked').val());
+            const res = await $.post("login", {type: $('input[name="user-type-LI"]:checked').val(), user: $('#username').val(), pass: $('#password').val()});
+            if (res != "error")
+            {
+                sessionStorage.setItem("id", res.id);
+                sessionStorage.setItem("username", res.username);
+                sessionStorage.setItem("password", res.password);
+                window.location.href = "/index.html";
+            }
+            else
+            {
+                $(".LI-error").show();
+                $(".LI-error").effect( "shake", {times:2}, 400 );
+            }
+        });
+
+        $("#signup-button").on("click", async function(){
+            const res = await $.post("/signup", {type: $('input[name="user-type-SU"]:checked').val(), user: $('#username').val(), pass: $('#password').val()});
+            if (res != "error")
+            {
+                sessionStorage.setItem("id", res.id);
+                sessionStorage.setItem("username", res.username);
+                sessionStorage.setItem("password", res.password);
+                window.location.href = "/index.html";
+            }
+            else
+            {
+                $(".SU-error").show();
+                $(".SU-error").effect( "shake", {times:2}, 400 );
+            }
+        });
+    });
+
+    function goSignUp() {
+        $("#login").fadeOut(300, function(){
+            $("#signup").fadeIn(300);
+        });
+    }
+
+    function goLogIn() {
+        $("#signup").fadeOut(300, function(){
+            $("#login").fadeIn(300);
+        });
+    }
+</script>
