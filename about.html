@@ -27,6 +27,10 @@
             height: 100vh;
         }
 
+        br {
+            margin: 20px;
+        }
+
         /*====GENERAL CLASSES===*/
         .c-vert {
             height: 100%;
@@ -140,35 +144,17 @@
                 );
             background-size: 5px 5px;
         }
-
-        .moving-line {
-            border: none;
-            animation: linearGradientMove .3s infinite linear;
-            background: 
-                linear-gradient(90deg, var(--red) 50%, transparent 0) repeat-x,
-                linear-gradient(-90deg, var(--red) 50%, transparent 0) repeat-x,
-                linear-gradient(0deg, var(--red) 50%, transparent 0) repeat-y,
-                linear-gradient(0deg, var(--red) 50%, transparent 0) repeat-y;
-            background-size: 0px 0px, 12px 3px, 0px 0px, 0px 0px;
-            background-position: 0 0, 0 100%, 0 0, 100% 0;
-        }
-
-        @keyframes linearGradientMove {
-            100% {
-                background-position: 4px 0, +12px 100%, 0 -4px, 100% 4px;
-            }
-        }
     </style>
 </head>
 
-<body>
+<body style="overflow: hidden;">
     <!--HEADER-->
     <div id="header-nav">
         <div id="header-nav-content" class="c-vert">
             <span id="masthead">RedPen</span>
             <nav>
-                <a href="index.html" class="nav-link selected">Home</a>
-                <a href="about.html" class="nav-link">About</a>
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link selected">About</a>
             </nav>
             <div class="j-right">
                 <img style="filter: invert(1); margin-right: 10px;"width="24" height="24" src="https://img.icons8.com/material-rounded/24/user-male-circle.png" alt="user-male-circle"/>
@@ -179,15 +165,17 @@
     <!--END HEADER-->
     
     <!--BODY-->
-    <div class="main">
-        <h1 style="font-family: georgia; font-weight: bold; font-size: 85px; margin-top: 150px;"><span style="color: var(--red)">RedPen</span> <span style="font-family: helvetica; font-weight: 400; font-size: 70px">bridges the gap</span></h1>
-        <h1 style="font-family: Helvetica; font-weight: lighter; font-size: 40; margin-top: 20px; margin-bottom: 10px;">Connecting publications directly to their audience<br>while giving a voice to the reader</h1>
-        <button id="more-info" onclick="link()" class="submit-button">Learn more →</button>
+    <div class="main" style="overflow: hidden;">
+        <div class="crosshatch" style="overflow: hidden; position: absolute;  height: 400px; width: 400px; top: 80vh; border-radius: 50%;"></div>
+        <h1 style="text-align: right;margin-left: auto; width: max-content;font-family: georgia; font-weight: bold; font-size: 40px; margin-top: 50px;"><span style="color: var(--red)">Purpose</span></h1>
+        <h1 style="text-align: right; margin-left: auto; width: 70%; font-family: Helvetica; font-weight: lighter; font-size: 18px; margin-top: 10px; margin-bottom: 10px; line-height: 30px; border-bottom: 2px solid var(--red);  padding-bottom: 2px;">The United States faces a crisis in news media — while traditional sources of journalistic revenue decline, Americans are less trusting than ever of the major news publications crucial to our democracy.<br>Despite this, there remains a lack of efficient and simple methods for the general public to voice their opinions about the news: most publications' only source of contact with their viewership are sparse qualitative data through janky comment systems. </h1>
+        <h1 style="font-family: georgia; font-weight: bold; font-size: 40px; margin-top: 10px;"><span style="font-family: helvetica; font-weight: 500; font-size: 30px">What is </span><span style="color: var(--red)">RedPen</span><span style="font-family: helvetica; font-weight: 500; font-size: 30px">?</span></h1>
+        <h1 style="width: 60%; font-family: Helvetica; font-weight: lighter; font-size: 18px; margin-top: 10px; margin-bottom: 10px; line-height: 30px; border-bottom: 2px solid var(--red); padding-bottom: 2px;">Deriving its name from the "red pen" with which editors critique the first draft of a news story, <span style="font-family: georgia; color: var(--red); font-weight: bold; font-size: 24px;">RedPen</span> is a survey-like Chrome extension and web app that allows for the general public to directly submit feedback to news publications on individual pieces of content.The publications can then use the feedback to improve their reporting and connect with their audience, simultaneously bolstering news quality while reforming critical trust within a heavily polarized society.</h1>
+        <!--END BODY-->
+        <p style="width: max-content; margin-left: auto; font-family: helvetica; font-weight: 500; font-size: 30px;">How does it work?</p>
+        <h1 style="text-align: right; width: 60%;  margin-left: auto; font-family: Helvetica; font-weight: lighter; font-size: 18px; margin-top: 10px; border-bottom: 2px solid var(--red);  padding-bottom: 2px;; margin-bottom: 10px; line-height: 30px;">Members of the general public can create a user account, which will allow them to submit reviews through the <span style="font-family: georgia; font-weight: bold; font-size: 24px; margin-top: 50px; color: var(--red)">RedPen Review</span> Chrome extension. Publications then use that data!<br><span style="font-size: 16px; font-style: italic;">(The chrome extension is still under review, but can be seen in the demo)</span></h1>
         <!--END BODY-->
     </div>
-    <div style="width: 100%; height: 5px; background-color: var(--red); position: absolute; top: 650px"></div>
-    <div class="moving-line" style="position: absolute; width: 100%; height: 5px; top: 670px"></div>
-    <div class="crosshatch" style="margin-left: auto; margin-top: auto;">
 </div>
 </body>
 
