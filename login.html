@@ -222,7 +222,7 @@
             color: white;
             border: 2px solid var(--red);
             border-radius: 10px;
-            padding: 10px 15px 15px 10px;
+            padding: 10px 15px 10px 10px;
             width: 100%;
             transition: color 350ms, background-color 350ms;
         }
@@ -309,8 +309,8 @@
                             <input type="radio" id="publisher2" name="user-type-SU" value="Publisher"/>
                             <label for="publisher2">Publisher</label>
                         </div>
-                        <input id="username" class="text-entry" type="text" name="user" placeholder="Email">
-                        <input id="password" class="text-entry" type="password" name="pass" placeholder="Password">
+                        <input id="username2" class="text-entry" type="text" name="user" placeholder="Email">
+                        <input id="password2" class="text-entry" type="password" name="pass" placeholder="Password">
                     </form>
                     <p class="error-message SU-error">Username taken</p>
                     <button id="signup-button" class="submit-button">Submit</button>
@@ -342,8 +342,8 @@
         });
 
         $("#signup-button").on("click", async function(){
-            const data = await $.post("/signup", {type: $('input[name="user-type-SU"]:checked').val(), user: $('#username').val(), pass: $('#password').val()});
-            if (data == "{error:\"e\"}")
+            const data = await $.post("/signup", {type: $('input[name="user-type-SU"]:checked').val(), user: $('#username2').val(), pass: $('#password2').val()});
+            if (data != "{\"error\":\"e\"}")
             {
                 sessionStorage.setItem("id", data.id);
                 sessionStorage.setItem("username", data.username);

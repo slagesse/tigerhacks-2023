@@ -48,6 +48,39 @@ app.post("/submit_review", function(req, res) {
   res.end();
 });
 
+app.post("/get-reviews", function(req, res) {
+  console.log("Sending reviews...\n")
+  info = req.body;
+  if (info.type == "Consumer")
+  {
+    db.query("SELECT * FROM reviews WHERE author='"+info.user+"'", (err, result) => {
+      if (result != undefined && result.length > 0)
+      {
+        res.setHeader('Content-Type', 'application/json');
+        res.end(JSON.stringify(result));
+      }
+      else{
+        res.end(JSON.stringify({error: "e"}));
+      }
+    });
+  }
+  else if (info.type == "Publisher")
+  {
+    db.query("SELECT * FROM reviews WHERE url LIKE LOWER('%"+info.user+"%')", (err, result) => {
+      if (result != undefined && result.length > 0)
+      {
+        res.setHeader('Content-Type', 'application/json');
+        res.end(JSON.stringify(result));
+      }
+      else{
+        res.end(JSON.stringify({error: "e"}));
+      }
+    });
+  }
+  
+  console.log("Reviews successfully sent.\n")
+});
+
 //Login
 app.post("/login", function(req, res) {
     attempt = req.body;
@@ -69,7 +102,7 @@ app.post("/login", function(req, res) {
         });
         // Close the MySQL connection
       }
-      else if (req.body.type =="Publisher")
+      else if (req.body.type == "Publisher")
       {
         db.query("SELECT * FROM publications WHERE name='"+attempt.user+"' AND password='"+attempt.pass+"'", (err, result) => {
           console.log(result);
@@ -116,6 +149,7 @@ app.post("/login", function(req, res) {
   }
   else if (req.body.type =="Publisher")
       {
+        console.log(req.body);
         db.query("SELECT * FROM publications WHERE name='%"+attempt.user+"%'", (err, result) => {
           if (result != undefined && result.length == 0 && attempt.user != "")
           {

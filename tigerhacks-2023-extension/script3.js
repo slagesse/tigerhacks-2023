@@ -9,7 +9,7 @@ function submitReview()
 {
     var data = new URLSearchParams();
     data.set('user', sessionStorage.getItem("user"));
-    data.set('url', sessionStorage.getItem("url"));
+    data.set('url', sessionStorage.getItem("target-url"));
     data.set('q1', document.getElementById('q1').value);
     data.set('q2', document.getElementById('q2').value);
     data.set('q2', document.getElementById('q2').value);
