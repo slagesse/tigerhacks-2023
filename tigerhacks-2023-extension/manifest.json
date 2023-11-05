@@ -1,0 +1,18 @@
+{
+    "name": "RedPen Review",
+    "version": "1.0.0",
+    "description": "Give feedback on the media you consume",
+    "manifest_version": 3,
+    "author": "Shane LaGesse",
+    "action":{
+        "default_popup": "login.html",
+        "default_title": "RedPen"
+    },
+    "host_permissions": ["https://tigerhacks-2023-e68b21283bcc.herokuapp.com/*"],
+    "permissions":
+    [
+        "activeTab",
+        "tabs"
+    ]
+    
+}

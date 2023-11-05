@@ -3,8 +3,7 @@
 <!--Created for TigerHacks 2023 by Shane LaGesse <3-->
 
 <head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="script3.js"></script>
     <style>
         /* Palette definition */
         :root {
@@ -55,7 +54,7 @@
         }
 
         .block {
-            display: inline;
+            display: block;
         }
         /*======================*/
 
@@ -63,18 +62,18 @@
 
         .heading {
             color: var(--red);
-            font-size: 30px;
+            font-size: 20px;
             font-family: 'Helvetica Light', 'Helvetica', Arial, sans-serif;
             font-weight: bold;
         }
 
         .big {
-            font-size: 50px;
+            font-size: 30px;
         }
 
         .error-message {
             color: var(--red);
-            font-size: 20px;
+            font-size: 15px;
             font-family: 'Helvetica Light', 'Helvetica', Arial, sans-serif;
             font-weight: lighter;
             width: max-content;
@@ -82,6 +81,16 @@
             margin-left: auto;
             margin-bottom: 15px;
             display: none;
+        }
+
+        .text {
+            font-size: 12px;
+            font-family: 'Helvetica Light', 'Helvetica', Arial, sans-serif;
+            font-weight: lighter;
+            margin-bottom: 15px;
+            color: black;
+            word-wrap: break-word;
+            text-align: center;
         }
 
         /*============================================================================================*/
@@ -105,7 +114,7 @@
         #masthead {
             margin-left: 40px;
             color: white;
-            font-size: 40px;
+            font-size: 25px;
             font-family: Georgia, 'Times New Roman', Times, serif;
             font-weight: bold;
         }
@@ -119,7 +128,7 @@
             /*=========================================================================================*/
             margin-left: 40px;
             color: white;
-            font-size: 20px;
+            font-size: 15px;
             font-family: 'Helvetica Light', 'Helvetica', Arial, sans-serif;
             font-weight: 100;
             width: max-content;
@@ -173,7 +182,7 @@
             width: 100%;
             background-color: white;
             color: rgba(0, 0, 0, 0.6);
-            font-size: 30px;
+            font-size: 20px;
             line-height: 1;
             text-align: center;
             padding: 16px 32px;
@@ -207,7 +216,7 @@
             width: 100%;
             border: 2px solid gray;
             outline: none;
-            font-size: 30px;
+            font-size: 20px;
             font-weight: lighter;
             border-radius: 10px;
             padding: 10px 10px 15px 10px;
@@ -217,7 +226,7 @@
         .submit-button {
             box-sizing: border-box;
             background-color: var(--red);
-            font-size: 30px;
+            font-size: 20px;
             font-weight: bold;
             color: white;
             border: 2px solid var(--red);
@@ -243,7 +252,7 @@
 
         .link-button {
             background-color: white;
-            font-size: 20px;
+            font-size: 15px;
             font-family: 'Helvetica Light', 'Helvetica', Arial, sans-serif;
             font-weight: lighter;
             border: none;
@@ -251,12 +260,21 @@
             display: block;
             margin-left: auto;
             margin-right: auto;
-            margin-top: 20px;
+margin-top: 10px;
         }
 
         .link-button:hover {
             cursor: pointer;
         }
+
+        .slidecontainer {
+            width: 100%; /* Width of the outside container */
+        }
+
+        .question {
+            margin-bottom: 10px;
+        }
+
         /*=======================================================================================================*/
 
         
@@ -264,110 +282,39 @@
 </head>
 
 <body>
-    <!--HEADER-->
-    <div id="header-nav">
-        <div id="header-nav-content" class="c-vert">
-            <span id="masthead">RedPen</span>
-            <nav>
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="index.html" class="nav-link">About</a>
-            </nav>
-            <div class="j-right">
-                <img style="filter: invert(1); margin-right: 10px;"width="24" height="24" src="https://img.icons8.com/material-rounded/24/user-male-circle.png" alt="user-male-circle"/>
-                <a href="login.html" class="nav-link selected" style="margin-left: 0px;">Login / Signup</a>
-            </div>
-        </div>
-    </div>
-    <!--END HEADER-->
-    
     <!--BODY-->
     <div class="body">
-        <div class="c-vert c-hor">
-            <div class="login-window c-vert c-hor">
-                <div class="login block" id="login">
-                    <form class="form">
-                        <span class="heading big c-hor" style="margin-bottom: 20px;">Login</span>
-                        <div class="switch-field">
-                            <input type="radio" id="consumer" name="user-type-LI" value="Consumer" checked/>
-                            <label for="consumer">Consumer</label>
-                            <input type="radio" id="publisher" name="user-type-LI" value="Publisher" />
-                            <label for="publisher">Publisher</label>
-                        </div>
-                        <input id="username" class="text-entry" type="text" name="user" placeholder="Email">
-                        <input id="password" class="text-entry" type="password" name="pass" placeholder="Password">
-                    </form>
-                    <p class="error-message LI-error">Incorrect username or password</p>
-                    <button id="login-button" class="submit-button">Submit</button>
-                    <button id="switch-tab" onclick="goSignUp()" class="link-button">Don't have an account? <span style="color: var(--red)">Sign up</span></button>
-                </div>
-                <div class="signup block" id="signup">
-                    <form class="form">
-                        <span class="heading big c-hor" style="margin-bottom: 20px;">Sign Up</span>
-                        <div class="switch-field">
-                            <input type="radio" id="consumer2" name="user-type-SU" value="Consumer" checked/>
-                            <label for="consumer2">Consumer</label>
-                            <input type="radio" id="publisher2" name="user-type-SU" value="Publisher"/>
-                            <label for="publisher2">Publisher</label>
-                        </div>
-                        <input id="username" class="text-entry" type="text" name="user" placeholder="Email">
-                        <input id="password" class="text-entry" type="password" name="pass" placeholder="Password">
-                    </form>
-                    <p class="error-message SU-error">Username taken</p>
-                    <button id="signup-button" class="submit-button">Submit</button>
-                    <button id="switch-tab" onclick="goLogIn()" class="link-button">Already have an account? <span style="color: var(--red)">Log in</span></button>
-                </div>
+        <div class="c-vert c-hor" style="padding: 20px; padding-bottom: 20px; width: 340px; height: 470px;">
+            <div class="login-window c-vert c-hor block" style="width:100%; height: 100%;">
+                <span class="heading big c-hor" style="color: black; margin-bottom: 20px; font-size: 25px; font-family: georgia">New Review</span>
+                <span class="heading big c-hor" style="margin-bottom: 10px; font-weight: 400; font-size: 20px; color: black;">URL:   <span id="url" style="margin-bottom: 20px; font-size: 20px; color: var(--red); font-weight: lighter;"></span></span>
+                <div class="question">
+                    <p class="text">How well did this article capture the underlying story?</p>
+                    <div class="slidecontainer" style="display: flex;">
+                        <span></span>1</span><input id="q1" style="width: 100%; margin-left: 5px; margin-right: 5px; accent-color: var(--red)" type="range" min="1" max="10" value="5" class="slider" id="myRange"><span>10</span>
+                    </div>     
+                </div>    
+                <div class="question">
+                    <p class="text">How well did this article represent the voices heard?</p>
+                    <div class="slidecontainer" style="display: flex;">
+                        <span></span>1</span><input id="q2" style="width: 100%; margin-left: 5px; margin-right: 5px; accent-color: var(--red)" type="range" min="1" max="10" value="5" class="slider" id="myRange"><span>10</span>
+                    </div>     
+                </div>      
+                <div class="question">
+                    <p class="text">How likely would you be to recommend this article to another reader?</p>
+                    <div class="slidecontainer" style="display: flex;">
+                        <span></span>1</span><input id="q3" style="width: 100%; margin-left: 5px; margin-right: 5px; accent-color: var(--red)" type="range" min="1" max="10" value="5" class="slider" id="myRange"><span>10</span>
+                    </div>     
+                </div>    
+                <div class="question">
+                    <p class="text">Additional Comments:</p>
+                    <div class="slidecontainer" style="display: flex;">
+                        <textarea name="Text1" id="comment" cols="40" rows="5" style="width: 100%; padding: 5px; font-family: Arial, Helvetica, sans-serif"></textarea>
+                    </div>     
+                </div> 
+                <button id="submit-button" class="submit-button">Submit</button>     
             </div>
         </div>
     </div>
     <!--END BODY-->
 </body>
-
-<script>
-    $(function(){
-        $("#login-button").on("click", async function(){
-            const data = await $.post("login", {type: $('input[name="user-type-LI"]:checked').val(), user: $('#username').val(), pass: $('#password').val()});
-            if (data != "{\"error\":\"e\"}")
-            {
-                sessionStorage.setItem("id", data.id);
-                sessionStorage.setItem("username", data.username);
-                sessionStorage.setItem("password", data.password);
-                sessionStorage.setItem("type", data.type);
-                window.location.href = "/index.html";
-            }
-            else
-            {
-                $(".LI-error").show();
-                $(".LI-error").effect( "shake", {times:2}, 400 );
-            }
-        });
-
-        $("#signup-button").on("click", async function(){
-            const data = await $.post("/signup", {type: $('input[name="user-type-SU"]:checked').val(), user: $('#username').val(), pass: $('#password').val()});
-            if (data == "{error:\"e\"}")
-            {
-                sessionStorage.setItem("id", data.id);
-                sessionStorage.setItem("username", data.username);
-                sessionStorage.setItem("password", data.password);
-                sessionStorage.setItem("type", data.type);
-                window.location.href = "/index.html";
-            }
-            else
-            {
-                $(".SU-error").show();
-                $(".SU-error").effect( "shake", {times:2}, 400 );
-            }
-        });
-    });
-
-    function goSignUp() {
-        $("#login").fadeOut(300, function(){
-            $("#signup").fadeIn(300);
-        });
-    }
-
-    function goLogIn() {
-        $("#signup").fadeOut(300, function(){
-            $("#login").fadeIn(300);
-        });
-    }
-</script>

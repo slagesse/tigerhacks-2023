@@ -1,5 +1,190 @@
 <!DOCTYPE html>
 
+<!--Created for TigerHacks 2023 by Shane LaGesse <3-->
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        /* Palette definition */
+        :root {
+            --red: #D7263D;
+        }
+        /* Clear inherent properties */
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        nav {
+            width: 100%;
+        }
+
+        /*====GENERAL CLASSES===*/
+        .c-vert {
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .c-hor {
+            width: 100%;
+            display: flex;
+            align-content: center;
+        }
+
+        .j-right {
+            width: 100%;
+            display: flex;
+            justify-content: right;
+        }
+        /*======================*/
+
+        /*====NAV STUFF===============================================================================*/
+
+        #header-nav {
+            width: 100%;
+            height: 80px;
+            background-color: var(--red);
+        }
+
+        #header-nav-content {
+            margin-left: 20px;
+            color: white;
+            margin-right: 60px;
+            width: auto;
+        }
+
+        #masthead {
+            margin-left: 40px;
+            color: white;
+            font-size: 40px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-weight: bold;
+        }
+
+        .nav-link {
+            /*==============================ANIMATION STUFF============================================*/
+            background: linear-gradient(0deg, white, white) no-repeat right bottom / 0 var(--bg-h);
+            transition: background-size 350ms;
+            padding-bottom: 2px;
+            --bg-h: 2px;
+            /*=========================================================================================*/
+            margin-left: 40px;
+            color: white;
+            font-size: 20px;
+            font-family: 'Helvetica Light', 'Helvetica', Arial, sans-serif;
+            font-weight: 100;
+            width: max-content;
+        }
+
+        .nav-link:where(:hover) {
+            background-size: 100% var(--bg-h);
+            background-position-x: left;
+        }
+
+        .selected {
+            font-weight: bold;
+            margin-right: 0px;
+            margin-left: 38px;
+        }
+
+        #user-body {
+            display: none;
+        }
+
+        #producer-body {
+            display: none;
+        }
+
+        .header {
+            font-size: 30px;
+            font-family: 'Helvetica Light', 'Helvetica', Arial, sans-serif;
+        }
+
+        /*====END NAV STUFF==========================================================================*/
+
+    </style>
+</head>
+
 <body>
-    <p>s</p>
+    <!--HEADER-->
+    <div id="header-nav">
+        <div id="header-nav-content" class="c-vert">
+            <span id="masthead">RedPen</span>
+            <nav>
+                <a href="index.html" class="nav-link selected">Home</a>
+                <a href="index.html" class="nav-link">About</a>
+            </nav>
+            <div class="j-right">
+                <img style="filter: invert(1); margin-right: 10px;"width="24" height="24" src="https://img.icons8.com/material-rounded/24/user-male-circle.png" alt="user-male-circle"/>
+                <a href="login.html" id="user-info" class="nav-link" style="margin-left: 0px;">Login / Sign up</a>
+            </div>
+        </div>
+    </div>
+    <!--END HEADER-->
+    
+    <!--BODY-->
+    <div class="body">
+            <div style="width: 80%; margin-right: auto; margin-left: auto; margin-top: 40px">
+                <span class="header" style="color: var(--red); margin-left: 20px; font-weight: bold;">Username: </span><span class="header" id="user" style="color: black"></span>
+                <span class="header" style="color: var(--red); margin-left: 20px; font-weight: bold;">Account Type: </span><span class="header" id="type" style="color: black"></span>
+                <div id="user-body" style="margin-top: 40px;">
+                    <span class="header" style="color: var(--red); margin-left: 20px;">Your reviews: </span>
+                </div>
+        
+                <div id="producer-body" style="margin-top: 40px;">
+                    <span class="header" style="font-size: 50px; font-weight: bold; color: var(--red); margin-left: 20px;">Your news: </span>
+                </div>
+            </div>
+    </div>
+    <!--END BODY-->
 </body>
+
+<script>
+    $( document ).ready(function() {
+        if (sessionStorage.getItem("username") != null)
+        {
+            $("#user-info").text(sessionStorage.getItem("username"));
+            $("#user-info").attr("href", "/user-profile")
+            $("#user").text(sessionStorage.getItem("username"));
+            $("#type").text(sessionStorage.getItem("type"));
+        }
+
+        if (sessionStorage.getItem("type") != null)
+        {
+            console.log(sessionStorage.getItem("type"))
+            if (sessionStorage.getItem("type") == "Consumer")
+            {
+                $("#user-body").show();
+            }
+            else
+            {
+                $("#producer-body").show();
+            }
+        }
+    });
+
+    /* When the user clicks on the button, 
+    toggle between hiding and showing the dropdown content */
+    function toggle() {
+    document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    // Close the dropdown menu if the user clicks outside of it
+    window.onclick = function(event) {
+    if (!event.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+        }
+        }
+    }
+    }
+</script>
